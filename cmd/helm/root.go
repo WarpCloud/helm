@@ -50,7 +50,7 @@ Environment:
 `
 
 // TODO: 'c helm.Interface' is deprecated in favor of actionConfig
-func newRootCmd(c helm.Interface, actionConfig *action.Configuration, out io.Writer, args []string) *cobra.Command {
+func newRootCmd(c helm.Interface, out io.Writer, args []string) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:          "helm",
 		Short:        "The Helm package manager for Kubernetes.",
@@ -67,6 +67,7 @@ func newRootCmd(c helm.Interface, actionConfig *action.Configuration, out io.Wri
 	// set defaults from environment
 	settings.Init(flags)
 
+	actionConfig := newActionConfig(false)
 	// Add the registry client based on settings
 	// TODO: Move this elsewhere (first, settings.Init() must move)
 	actionConfig.RegistryClient = registry.NewClient(&registry.ClientOptions{
@@ -99,7 +100,7 @@ func newRootCmd(c helm.Interface, actionConfig *action.Configuration, out io.Wri
 		newRollbackCmd(c, out),
 		newStatusCmd(c, out),
 		newUninstallCmd(c, out),
-		newUpgradeCmd(c, out),
+		newUpgradeCmd(c, actionConfig, out),
 
 		newCompletionCmd(out),
 		newHomeCmd(out),
