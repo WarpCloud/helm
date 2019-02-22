@@ -9,3 +9,4 @@
 _dist/
 bin/
 vendor/
+*.iml
