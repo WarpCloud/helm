@@ -51,7 +51,7 @@ all: build
 .PHONY: build
 build: $(BINDIR)/$(BINNAME)
 
-$(BINDIR)/$(BINNAME): $(SRC) vendor
+$(BINDIR)/$(BINNAME): $(SRC)
 	go build $(GOFLAGS) -tags '$(TAGS)' -ldflags '$(LDFLAGS)' -o $(BINDIR)/$(BINNAME) k8s.io/helm/cmd/helm
 
 # ------------------------------------------------------------------------------

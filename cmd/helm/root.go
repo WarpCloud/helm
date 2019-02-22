@@ -23,7 +23,6 @@ import (
 	"github.com/spf13/cobra"
 
 	"k8s.io/helm/cmd/helm/require"
-	"k8s.io/helm/pkg/action"
 	"k8s.io/helm/pkg/helm"
 	"k8s.io/helm/pkg/registry"
 )
